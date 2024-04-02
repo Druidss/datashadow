@@ -1,7 +1,9 @@
 import { Canvas } from '@react-three/fiber';
 import './App.css';
-import Basic from './components/ParticlesDemo';
+import Basic from './ParticlesDemo';
 import { OrbitControls } from "@react-three/drei";
+
+
 
 function App() {
   return (
