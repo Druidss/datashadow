@@ -9,7 +9,7 @@ function App() {
       <Canvas  camera={{ position: [1.5, 1.5, 1.5] }}>
         <ambientLight intensity={0.5} />
         <color attach='background' args={['#101010']} />
-        <Basic />
+        <Basic  count={2000} shape="sphere" />
          <OrbitControls autoRotate />
       </Canvas>
     </>
