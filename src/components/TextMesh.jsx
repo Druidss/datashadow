@@ -1,44 +1,39 @@
-import { useRef, useEffect } from 'react';
-import * as THREE from 'three';
+import {  useThree } from '@react-three/fiber';
+import { useRef } from "react";
+import { Text3D, useMatcapTexture } from "@react-three/drei";
 
-const  TextMesh = (props) => {
+import '../App.css'; // 导入文本的 CSS 样式文件
 
-  const meshRef = useRef();
-  const { text, position, color } = props;
+const Text = (props) => {
+  
+  const {position} = props;
+  const [matcapTexture] = useMatcapTexture("CB4E88_F99AD6_F384C3_ED75B9");
+  const ref = useRef();
+  const { width: w, height: h } = useThree((state) => state.viewport);
 
+  return (
+    <>
+      <Text3D       
+        position={[0, 0, -10]}
+        scale={[-1, 1, 1]}
+        ref={ref}
+        size={w / 9}
+        maxWidth={[-w / 5, -h * 2, 3]}
+        font={"/gt.json"}
+        curveSegments={24}
+        brevelSegments={1}
+        bevelEnabled
+        bevelSize={0.08}
+        bevelThickness={0.03}
+        height={1}
+        lineHeight={0.9}
+        letterSpacing={0.3}
+      >
+        {`JULIALAB\n  code\nsandbox`}
+        <meshMatcapMaterial color="white" matcap={matcapTexture} />
+      </Text3D>
+  </>
+  );
+};
 
-  useEffect(() => {
-    const fontLoader = new THREE.FontLoader();
-    fontLoader.load('/path/to/font.json', function (font) {
-      const textGeometry = new THREE.TextGeometry(text, {
-        font: font,
-        size: 10,
-        height: 1,
-        curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 0.5,
-        bevelSize: 0.2,
-        bevelOffset: 0,
-        bevelSegments: 3
-      });
-
-      const textMaterial = new THREE.MeshBasicMaterial({ color: color });
-
-      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-      textMesh.position.copy(position);
-
-      meshRef.current = textMesh;
-    });
-
-    return () => {
-      if (meshRef.current) {
-        meshRef.current.geometry.dispose();
-        meshRef.current.material.dispose();
-      }
-    };
-  }, [text, position, color]);
-
-  return null; // 文字网格将在 Three.js 场景中创建，不需要在 JSX 中渲染任何内容
-}
-
-export default TextMesh;
+export default Text;
