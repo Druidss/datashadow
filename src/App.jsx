@@ -2,20 +2,44 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text } from "@react-three/drei";
 import Fbo from './fbo/FBOParticles.jsx'
 import './App.css';
+import sound from './assets/bgm.mp3'
 import { VRButton, XR } from '@react-three/xr'
-
+import { useState, useEffect } from "react";
 
 
 
 
 function App() {
+  
+  const [isPlaying, setIsPlaying] = useState(false);
+  // const [audio] = useState(new Audio('./assets/bgm.mp3'));
+  const audio = new Audio(sound);
 
+  useEffect(() => {
+    audio.loop = true;
+    // console.log(audio);  
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+    return () => {
+      audio.pause();
+      // audio.src = ''; 
+    };
+  }, [isPlaying]);
+
+
+  const toggleMusic = () => {
+    setIsPlaying((prevState) => !prevState);
+  };
 
 
   return (
     <>
-    <VRButton />
-      <Canvas  camera={{ position: [1.5, 1.5, 1.5] }}>
+    <VRButton   />
+    {/* <audio src="./assets/bgm.mp3" autoPlay={isPlaying} loop /> */}
+      <Canvas  camera={{ position: [1.5, 1.5, 1.5] }} onClick={toggleMusic}>
         <XR>
         <ambientLight intensity={0.5} />  
         <Text
@@ -39,7 +63,7 @@ function App() {
         > 
         {'\n'} {'\n'}{'\n'}
           {'\n'}vendor: {navigator.vendor} {'\n'} 
-          version: {navigator.appVersion.split(')')[0]} {'\n'}
+          version: {navigator.appVersion.split('')[0]} {'\n'}
           platform: {navigator.platform} {'\n'}
           language: {navigator.language} {'\n'}  
           width: {window.screen.width}vw {'\n'}  
