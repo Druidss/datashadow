@@ -424,7 +424,7 @@
     uuid "^9.0.1"
     zustand "^3.7.1"
 
-"@react-three/fiber@^8.16.1", "@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0":
+"@react-three/fiber@^8.16.1", "@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0", "@react-three/fiber@>=8.0.0":
   version "8.16.1"
   resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-8.16.1.tgz"
   integrity sha512-Rgjn+xcR+6Do2Ic4b6RROIvCGs3RhoVJEamfmtMSfkgIRH3PeiPdqRxcfJlO9y6KDvYA5fIUGruz9h/sTeLlpw==
@@ -439,6 +439,15 @@
     react-use-measure "^2.1.1"
     scheduler "^0.21.0"
     suspend-react "^0.1.3"
+    zustand "^3.7.1"
+
+"@react-three/xr@^5.7.1":
+  version "5.7.1"
+  resolved "https://registry.npmjs.org/@react-three/xr/-/xr-5.7.1.tgz"
+  integrity sha512-GaRUSA+lE8VJF/NrXq7QQByZ4UGHbQQ4rs3QCphZs9fVidK86hGrMOQ0kL79gZc5pa3V5uFGlOhNcUdsTYE3Bg==
+  dependencies:
+    "@types/webxr" "*"
+    three-stdlib "^2.21.1"
     zustand "^3.7.1"
 
 "@rollup/pluginutils@^5.1.0":
@@ -2921,7 +2930,7 @@ three-mesh-bvh@^0.7.0:
   resolved "https://registry.npmjs.org/three-mesh-bvh/-/three-mesh-bvh-0.7.3.tgz"
   integrity sha512-3W6KjzmupjfE89GuHPT31kxKWZ4YGZPEZJNysJpiOZfQRsBQQgmK7v/VJPpjG6syhAvTnY+5Fr77EvIkTLpGSw==
 
-three-stdlib@^2.29.4:
+three-stdlib@^2.21.1, three-stdlib@^2.29.4:
   version "2.29.6"
   resolved "https://registry.npmjs.org/three-stdlib/-/three-stdlib-2.29.6.tgz"
   integrity sha512-nj9bHkzhhwfmqQcM/keC2RDb0bHhbw6bRXTy81ehzi8F1rtp6pJ5eS0/vl1Eg5RMFqXOMyxJ6sDHPoLU+IrVZg==
@@ -2933,7 +2942,7 @@ three-stdlib@^2.29.4:
     fflate "^0.6.9"
     potpack "^1.0.1"
 
-three@^0.163.0, "three@>= 0.151.0", three@>=0.125.0, three@>=0.126, three@>=0.126.1, three@>=0.128.0, three@>=0.133, three@>=0.137, three@>=0.144.0:
+three@^0.163.0, "three@>= 0.151.0", three@>=0.125.0, three@>=0.126, three@>=0.126.1, three@>=0.128.0, three@>=0.133, three@>=0.137, three@>=0.141, three@>=0.144.0:
   version "0.163.0"
   resolved "https://registry.npmjs.org/three/-/three-0.163.0.tgz"
   integrity sha512-HlMgCb2TF/dTLRtknBnjUTsR8FsDqBY43itYop2+Zg822I+Kd0Ua2vs8CvfBVefXkBdNDrLMoRTGCIIpfCuDew==
