@@ -2,18 +2,15 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text } from "@react-three/drei";
 import Fbo from './fbo/FBOParticles.jsx'
 import './App.css';
-import { VRButton, ARButton, XR, Controllers, Hands } from '@react-three/xr'
+import { VRButton, XR } from '@react-three/xr'
 
 
-
-// import Text from './components/TextMesh.jsx'
 
 
 
 function App() {
 
-  // const font = useLoader(FontLoader, './assets/ocr.json');
-  const userAgent = navigator.userAgent;
+
 
   return (
     <>
@@ -40,9 +37,9 @@ function App() {
           strokeColor="white"
           textAlign= 'left'
         > 
-        {'\n'}
+        {'\n'} {'\n'}{'\n'}
           {'\n'}vendor: {navigator.vendor} {'\n'} 
-          version: {navigator.appVersion.split('10')[0]} {'\n'}
+          version: {navigator.appVersion.split(')')[0]} {'\n'}
           platform: {navigator.platform} {'\n'}
           language: {navigator.language} {'\n'}  
           width: {window.screen.width}vw {'\n'}  
