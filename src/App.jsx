@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text } from "@react-three/drei";
+import { OrbitControls, Text, Text3D } from "@react-three/drei";
 import Fbo from './fbo/FBOParticles.jsx'
 import './App.css';
 import sound from './assets/bgm.mp3'
@@ -42,22 +42,23 @@ function App() {
       <Canvas  camera={{ position: [1.5, 1.5, 1.5] }} onClick={toggleMusic}>
         <XR>
         <ambientLight intensity={0.5} />  
-        <Text
-          scale={[0.2, 0.2, 0.2]}
+        <Text3D
+          scale={[0.1, 0.1, 0.1]}
+          position={[-1, 0, 0]}
           color="white" 
           anchorX="center" 
           anchorY="middle" 
-          // font= {font}
+          font="/ocr.json"
         > 
-         Your URL: {'\n'} {window.location.href} {'\n'} 
-        </Text>
+         {`Your URL:\n`} {window.location.href}
+        </Text3D>
 
         <Text
           scale={[0.06, 0.06, 0.06]}
           fillOpacity="0"
           anchorX="center" 
           anchorY="2000" 
-          strokeWidth={0.02}
+          strokeWidth={0.03}
           strokeColor="white"
           textAlign= 'left'
         > 
