@@ -5,6 +5,7 @@ import './App.css';
 import sound from './assets/bgm.mp3'
 import { VRButton, XR } from '@react-three/xr'
 import { useState, useEffect } from "react";
+import { MeshStandardMaterial } from 'three';
 
 
 
@@ -30,6 +31,18 @@ function App() {
     setIsPlaying((prevState) => !prevState);
   };
 
+
+
+
+const textMaterial = new MeshStandardMaterial({
+  color: 'white',
+  transparent: true,
+  opacity: 0.6, // Set your desired opacity here
+});
+
+<Text material={textMaterial}>
+  Hello World
+</Text>
   return (
     <>
     <VRButton />
@@ -43,6 +56,7 @@ function App() {
           anchorX="center" 
           anchorY="middle" 
           font="/ocr.json"
+          material={textMaterial}
         > 
          {`Your URL:\n`} {window.location.href}
         </Text3D>
@@ -52,7 +66,7 @@ function App() {
           fillOpacity="0"
           anchorX="center" 
           anchorY="2000" 
-          strokeWidth={0.03}
+          strokeWidth={0.1}
           strokeColor="white"
           textAlign= 'left'
         > 
