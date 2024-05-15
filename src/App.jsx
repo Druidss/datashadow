@@ -8,16 +8,14 @@ import { useState, useEffect } from "react";
 
 
 
-
 function App() {
   
   const [isPlaying, setIsPlaying] = useState(false);
-  // const [audio] = useState(new Audio('./assets/bgm.mp3'));
   const audio = new Audio(sound);
 
   useEffect(() => {
     audio.loop = true;
-    // console.log(audio);  
+
     if (isPlaying) {
       audio.play();
     } else {
@@ -25,21 +23,17 @@ function App() {
     }
     return () => {
       audio.pause();
-      // audio.src = ''; 
     };
   }, [isPlaying]);
-
 
   const toggleMusic = () => {
     setIsPlaying((prevState) => !prevState);
   };
 
-
   return (
     <>
-    <VRButton   />
-    {/* <audio src="./assets/bgm.mp3" autoPlay={isPlaying} loop /> */}
-      <Canvas  camera={{ position: [1.5, 1.5, 1.5] }} onClick={toggleMusic}>
+    <VRButton />
+      <Canvas  camera={{ position: [0, -0.24, 2.2] }} onClick={toggleMusic}>
         <XR>
         <ambientLight intensity={0.5} />  
         <Text3D
