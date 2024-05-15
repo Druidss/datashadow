@@ -3,7 +3,7 @@ import { OrbitControls, Text, Text3D } from "@react-three/drei";
 import Fbo from './fbo/FBOParticles.jsx'
 import './App.css';
 import sound from './assets/bgm.mp3'
-import { VRButton, XR } from '@react-three/xr'
+import { VRButton, XR, Controllers } from '@react-three/xr'
 import { useState, useEffect } from "react";
 import { MeshStandardMaterial } from 'three';
 
@@ -49,6 +49,7 @@ const textMaterial = new MeshStandardMaterial({
       <Canvas  camera={{ position: [0, -0.24, 2.2] }} onClick={toggleMusic}>
         <XR>
         <ambientLight intensity={0.5} />  
+        <Controllers />
         <Text3D
           scale={[0.1, 0.1, 0.1]}
           position={[-1, 0, 0]}
