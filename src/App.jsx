@@ -66,9 +66,10 @@ const textMaterial = new MeshStandardMaterial({
           fillOpacity="0"
           anchorX="center" 
           anchorY="2000" 
-          strokeWidth={0.1}
+          strokeWidth={0.03}
           strokeColor="white"
           textAlign= 'left'
+          material={textMaterial}
         > 
         {'\n'} {'\n'}{'\n'}
           {'\n'}vendor: {navigator.vendor} {'\n'} 
