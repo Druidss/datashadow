@@ -3,6 +3,7 @@ import { OrbitControls, Text, Text3D } from "@react-three/drei";
 import Fbo from './fbo/FBOParticles.jsx'
 import './App.css';
 import sound from './assets/bgm.mp3'
+import talk from './assets/talk.mp3' 
 import { VRButton, XR, Controllers } from '@react-three/xr'
 import { useState, useEffect } from "react";
 import { MeshStandardMaterial } from 'three';
@@ -13,17 +14,22 @@ function App() {
   
   const [isPlaying, setIsPlaying] = useState(false);
   const audio = new Audio(sound);
+  const talkAudio = new Audio(talk);
 
   useEffect(() => {
     audio.loop = true;
-
+    talkAudio.loop = true;
     if (isPlaying) {
       audio.play();
-    } else {
+      talkAudio.play();
+    } 
+    else {
       audio.pause();
+      talkAudio.pause();
     }
     return () => {
       audio.pause();
+      talkAudio.pause();
     };
   }, [isPlaying]);
 
@@ -37,7 +43,7 @@ function App() {
 const textMaterial = new MeshStandardMaterial({
   color: 'white',
   transparent: true,
-  opacity: 0.6, // Set your desired opacity here
+  opacity: 1, // Set your desired opacity here
 });
 
 <Text material={textMaterial}>
@@ -57,7 +63,7 @@ const textMaterial = new MeshStandardMaterial({
           anchorX="center" 
           anchorY="middle" 
           font="/ocr.json"
-          material={textMaterial}
+          // material={textMaterial}
         > 
          {`Your URL:\n`} {window.location.href}
         </Text3D>

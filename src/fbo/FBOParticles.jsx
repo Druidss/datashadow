@@ -1,5 +1,5 @@
 import {  useFBO } from "@react-three/drei";
-import { useFrame, extend, createPortal } from "@react-three/fiber";
+import { useFrame, extend, createPortal, useThree } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -11,10 +11,12 @@ import fragmentShader from "./fragmentShader.glsl?raw";
 extend({ SimulationMaterial: SimulationMaterial });
 
 const FBOParticles = () => {
-  const size = 256;
+  const size = 540;
+  
 
   const points = useRef();
   const simulationMaterialRef = useRef();
+  const { viewport, pointer } = useThree();
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1);
@@ -43,11 +45,16 @@ const FBOParticles = () => {
   const uniforms = useMemo(() => ({
     uPositions: {
       value: null,
-    }
+    },
+    uMouse: { value: new THREE.Vector2() },
   }), [])
 
   useFrame((state) => {
-    const { gl, clock } = state;
+    const { gl, clock, } = state;
+
+    const mouseX = (pointer.x * viewport.width) / 2;
+    const mouseY = (pointer.y * viewport.height) / 2;    uniforms.uMouse.value.set(mouseX, mouseY);
+    simulationMaterialRef.current.uniforms.uTime.value = clock.elapsedTime;
 
     gl.setRenderTarget(renderTarget);
     gl.clear();
