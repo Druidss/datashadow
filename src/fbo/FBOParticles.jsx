@@ -16,7 +16,8 @@ const FBOParticles = () => {
 
   const points = useRef();
   const simulationMaterialRef = useRef();
-  const { viewport, pointer } = useThree();
+  const cursorRef = useRef(new THREE.Vector2());
+  const { viewport } = useThree();
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1);
@@ -46,24 +47,28 @@ const FBOParticles = () => {
     uPositions: {
       value: null,
     },
-    uMouse: { value: new THREE.Vector2() },
+    uCursor: { value: new THREE.Vector2() },
   }), [])
 
   useFrame((state) => {
-    const { gl, clock, } = state;
+    const { gl, clock, pointer } = state;
 
     const mouseX = (pointer.x * viewport.width) / 2;
-    const mouseY = (pointer.y * viewport.height) / 2;    uniforms.uMouse.value.set(mouseX, mouseY);
-    simulationMaterialRef.current.uniforms.uTime.value = clock.elapsedTime;
+    const mouseY = (pointer.y * viewport.height) / 2;    
+    
 
     gl.setRenderTarget(renderTarget);
     gl.clear();
     gl.render(scene, camera);
     gl.setRenderTarget(null);
+    
 
     points.current.material.uniforms.uPositions.value = renderTarget.texture;
+    points.current.material.uniforms.uCursor.value.set(mouseX, mouseY);
 
     simulationMaterialRef.current.uniforms.uTime.value = clock.elapsedTime;
+
+    // console.log(points.current.material.uniforms.uCursor.value); 
   });
 
   return (
